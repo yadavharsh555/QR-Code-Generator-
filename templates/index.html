@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>QR Code Generator</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h2>Generate Your QR Code Instantly</h2>
+        <p>Enter a URL and create a custom QR code for free in seconds.</p>
+    </section>
+
+    <!-- QR Code Generator Form -->
+    <div class="form-container">
+        <form action="/" method="POST" class="input-group">
+            <input type="text" name="url" placeholder="Enter URL..." required>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+    
+
+    <!-- About Us Section -->
+    <section class="about" id="about">
+        <h2>About Us</h2>
+        <p>We provide a fast and free way to generate QR codes for your links, making sharing easier than ever. Our QR code generator ensures high-quality output and easy access to your digital content.</p>
+        <div class="features">
+            <div class="feature">
+                <h3>Fast & Free</h3>
+                <p>Generate QR codes instantly without any cost.</p>
+            </div>
+            <div class="feature">
+                <h3>Customizable</h3>
+                <p>Add different styles and sizes for your QR codes.</p>
+            </div>
+            <div class="feature">
+                <h3>Secure</h3>
+                <p>Your data remains private and secure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@qrcodegen.com</p>
+        <p>Phone: +123 456 7890</p>
+        <p>Follow us on social media for updates!</p>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 QR Code Generator. All Rights Reserved.</p>
+    </div>
+
+</body>
+</html>

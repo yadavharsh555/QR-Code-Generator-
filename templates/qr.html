@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your QR Code</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='qr.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Your QR Code</h2>
+        <img id="qrImage" src="{{ qr_url }}" alt="QR Code">
+        <br>
+        <a href="/" class="btn">Generate Another</a>
+        <a id="downloadBtn" class="btn" download="qrcode.png">Download QR Code</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let qrImage = document.getElementById("qrImage");
+            let downloadBtn = document.getElementById("downloadBtn");
+            downloadBtn.href = qrImage.src;
+        });
+    </script>
+</body>
+</html>
