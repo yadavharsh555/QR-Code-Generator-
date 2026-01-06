@@ -18,24 +18,32 @@ body {
 }
 
 /* QR Code Container */
+
 .container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    max-width: 400px;
-    width: 90%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  /* Glassmorphism */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  max-width: 400px;
+  width: 90%;
 }
 
 /* Title */
 .container h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    background: linear-gradient(90deg, #ff00ff, #ff6600);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 24px;
+  margin-bottom: 15px;
+
+  background: linear-gradient(90deg, #ff00ff, #ff6600);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 /* QR Code Styling */
 .container img {

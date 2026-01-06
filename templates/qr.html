@@ -1,86 +1,146 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your QR Code</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script> tailwind.config = { darkMode: 'class' };</script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-  <style>
-    .fade-in {
-      animation: fadeIn 0.6s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans flex items-center justify-center min-h-screen px-4">
-
-  <!-- Toast -->
-  <div id="toast" class="fixed top-5 right-5 bg-green-600 text-white px-4 py-2 rounded-md shadow-lg hidden z-50">
-    QR Code Downloaded!
-  </div>
-
-  <!-- QR Card -->
-  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 max-w-md w-full text-center fade-in">
-    <h2 class="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-6">Your QR Code</h2>
-
-    <img id="qrImage" src="{{ qr_url }}" alt="QR Code" class="mx-auto w-64 h-64 rounded-lg border mb-6" />
-
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="/" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md flex items-center justify-center gap-2 transition">
-        <i class="fas fa-arrow-left"></i> Generate Another
-      </a>
-      <a id="downloadBtn" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md transition" download="qrcode.png">Download QR Code</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your QR Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .fade-in {
+        animation: fadeIn 0.6s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans flex items-center justify-center min-h-screen px-4"
+  >
+    <!-- Toast -->
+    <div
+      id="toast"
+      class="fixed top-5 right-5 bg-green-600 text-white px-4 py-2 rounded-md shadow-lg hidden z-50"
+    >
+      QR Code Downloaded!
     </div>
 
-    <!-- Theme Toggle -->
-    <div class="mt-6 flex justify-center">
-      <button id="themeToggle" class="relative w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full p-1 flex items-center transition-all duration-300 shadow-inner">
-        <div id="toggleCircle" class="w-5 h-5 bg-white rounded-full shadow-md transform transition-all duration-300 flex items-center justify-center">
-          <i id="toggleIcon" class="fas fa-sun text-yellow-400 text-sm"></i>
-        </div>
-      </button>
+    <!-- QR Card -->
+    <div
+      class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 max-w-md w-full text-center fade-in"
+    >
+      <h2 class="text-2xl font-semibold text-blue-600 dark:text-blue-400 mb-6">
+        Your QR Code
+      </h2>
+
+      <img
+        id="qrImage"
+        src="{{ qr_url }}"
+        alt="QR Code"
+        class="mx-auto w-64 h-64 rounded-lg border mb-6"
+      />
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a
+          href="/"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md flex items-center justify-center gap-2 transition"
+        >
+          <i class="fas fa-arrow-left"></i> Generate Another
+        </a>
+        <a
+          id="downloadBtn"
+          class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md transition"
+          download="qrcode.png"
+          >Download QR Code</a
+        >
+      </div>
+
+      <!-- Theme Toggle -->
+      <div class="mt-6 flex justify-center">
+        <button
+          type="button"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+          title="Toggle dark mode"
+          aria-pressed="false"
+          class="relative w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full p-1 flex items-center transition-all duration-300 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+        >
+          <span class="sr-only">Toggle dark mode</span>
+
+          <div
+            id="toggleCircle"
+            class="w-5 h-5 bg-white rounded-full shadow-md transform transition-all duration-300 flex items-center justify-center"
+          >
+            <i
+              id="toggleIcon"
+              class="fas fa-sun text-yellow-400 text-sm"
+              aria-hidden="true"
+            ></i>
+          </div>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <!-- Script -->
-  <script>
-    const qrImage = document.getElementById("qrImage");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const toast = document.getElementById("toast");
-    const themeToggle = document.getElementById("themeToggle");
-    const toggleCircle = document.getElementById("toggleCircle");
-    const toggleIcon = document.getElementById("toggleIcon");
+    <script>
+      const qrImage = document.getElementById("qrImage");
+      const downloadBtn = document.getElementById("downloadBtn");
+      const toast = document.getElementById("toast");
+      const themeToggle = document.getElementById("themeToggle");
+      const toggleCircle = document.getElementById("toggleCircle");
+      const toggleIcon = document.getElementById("toggleIcon");
 
-    downloadBtn.href = qrImage.src;
+      /* ---------- QR Download ---------- */
+      if (qrImage && downloadBtn) {
+        downloadBtn.href = qrImage.src;
 
-    downloadBtn.addEventListener("click", () => {
-      toast.classList.remove("hidden");
-      setTimeout(() => toast.classList.add("hidden"), 3000);
-    });
+        downloadBtn.addEventListener("click", () => {
+          if (!toast) return;
+          toast.classList.remove("hidden");
+          setTimeout(() => toast.classList.add("hidden"), 3000);
+        });
+      }
 
-    if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      toggleCircle.classList.add('translate-x-7');
-      toggleIcon.classList.replace('fa-sun', 'fa-moon');
-      toggleIcon.classList.replace('text-yellow-400', 'text-white');
-    }
+      /* ---------- Theme Initialization ---------- */
+      const prefersDark =
+        localStorage.theme === "dark" ||
+        (!localStorage.theme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-    themeToggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.theme = isDark ? "dark" : "light";
-      toggleCircle.classList.toggle("translate-x-7");
-      toggleIcon.classList.toggle("fa-sun");
-      toggleIcon.classList.toggle("fa-moon");
-      toggleIcon.classList.toggle("text-yellow-400");
-      toggleIcon.classList.toggle("text-white");
-    });
-  </script>
+      if (prefersDark) {
+        document.documentElement.classList.add("dark");
+        toggleCircle?.classList.add("translate-x-7");
+        toggleIcon?.classList.replace("fa-sun", "fa-moon");
+        toggleIcon?.classList.replace("text-yellow-400", "text-white");
+        themeToggle?.setAttribute("aria-pressed", "true");
+      }
 
-</body>
+      /* ---------- Theme Toggle ---------- */
+      themeToggle?.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.theme = isDark ? "dark" : "light";
+
+        toggleCircle?.classList.toggle("translate-x-7");
+        toggleIcon?.classList.toggle("fa-sun");
+        toggleIcon?.classList.toggle("fa-moon");
+        toggleIcon?.classList.toggle("text-yellow-400");
+        toggleIcon?.classList.toggle("text-white");
+
+        themeToggle.setAttribute("aria-pressed", isDark);
+      });
+    </script>
+  </body>
 </html>

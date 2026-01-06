@@ -1,114 +1,188 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Code Generator</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script> tailwind.config = { darkMode: 'class' };</script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-  <style>
-    .fade-in {
-      animation: fadeIn 0.6s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition duration-300">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .fade-in {
+        animation: fadeIn 0.6s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition duration-300"
+  >
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          QR Code Generator
+        </h1>
+        <div class="flex items-center gap-6">
+          <ul class="flex space-x-6 text-sm md:text-base">
+            <li><a href="#home" class="hover:text-blue-500">Home</a></li>
+            <li><a href="#about" class="hover:text-blue-500">About</a></li>
+            <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
+          </ul>
+          <!-- Theme Toggle -->
+          <button
+            type="button"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+            class="relative w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full p-1 flex items-center transition-all duration-300 shadow-inner"
+          >
+            <span class="sr-only">Toggle dark mode</span>
 
-  <!-- Navbar -->
-  <nav class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">QR Code Generator</h1>
-      <div class="flex items-center gap-6">
-        <ul class="flex space-x-6 text-sm md:text-base">
-          <li><a href="#home" class="hover:text-blue-500">Home</a></li>
-          <li><a href="#about" class="hover:text-blue-500">About</a></li>
-          <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
-        </ul>
-        <!-- Theme Toggle -->
-        <button id="themeToggle" class="relative w-14 h-7 bg-gray-300 dark:bg-gray-700 rounded-full p-1 flex items-center transition-all duration-300 shadow-inner">
-          <div id="toggleCircle" class="w-5 h-5 bg-white rounded-full shadow-md transform transition-all duration-300 flex items-center justify-center">
-            <i id="toggleIcon" class="fas fa-sun text-yellow-400 text-sm"></i>
-          </div>
+            <div
+              id="toggleCircle"
+              class="w-5 h-5 bg-white rounded-full shadow-md transform transition-all duration-300 flex items-center justify-center"
+            >
+              <i
+                id="toggleIcon"
+                class="fas fa-sun text-yellow-400 text-sm"
+                aria-hidden="true"
+              ></i>
+            </div>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white fade-in"
+    >
+      <h2 class="text-4xl font-bold mb-4">Generate Your QR Code Instantly</h2>
+      <p class="text-lg mb-8">
+        Enter a URL and get your QR code in seconds — fast, free, and secure.
+      </p>
+
+      <form
+        action="/"
+        method="POST"
+        class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3 items-center bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg"
+      >
+        <input
+          type="text"
+          name="url"
+          placeholder="Enter URL..."
+          required
+          class="flex-grow px-4 py-2 border rounded-md outline-none dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          type="submit"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md transition"
+        >
+          Generate
         </button>
+      </form>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 text-center bg-gray-100 dark:bg-gray-800">
+      <h2 class="text-3xl font-semibold mb-6">About Us</h2>
+      <p class="max-w-2xl mx-auto mb-10 text-gray-700 dark:text-gray-300">
+        We help you quickly create QR codes for your links. No sign-up required.
+        It’s private, secure, and optimized for all devices.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div
+          class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-md transition"
+        >
+          <h3 class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-2">
+            ⚡ Fast & Free
+          </h3>
+          <p>Generate QR codes instantly at no cost.</p>
+        </div>
+        <div
+          class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-md transition"
+        >
+          <h3 class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-2">
+            🎨 Customizable
+          </h3>
+          <p>Style and size your QR codes for every need.</p>
+        </div>
+        <div
+          class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-md transition"
+        >
+          <h3 class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-2">
+            🔒 Secure
+          </h3>
+          <p>Your URLs are never saved. 100% privacy.</p>
+        </div>
       </div>
-    </div>
-  </nav>
+    </section>
 
-  <!-- Hero Section -->
-  <section id="home" class="text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white fade-in">
-    <h2 class="text-4xl font-bold mb-4">Generate Your QR Code Instantly</h2>
-    <p class="text-lg mb-8">Enter a URL and get your QR code in seconds — fast, free, and secure.</p>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 text-center bg-white dark:bg-gray-900">
+      <h2 class="text-3xl font-semibold mb-6">Contact Us</h2>
+      <p class="mb-2">
+        📧
+        <a
+          href="yadavharsh9575@gmail.com"
+          class="text-blue-600 dark:text-blue-400 hover:underline"
+          >yadavharsh9575@gmail.com</a
+        >
+      </p>
+      <p class="mb-2">📞 7389886205</p>
+      <p>🌐 Follow us on social media for updates</p>
+    </section>
 
-    <form action="/" method="POST" class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3 items-center bg-white dark:bg-gray-800 p-4 rounded-xl shadow-lg">
-      <input type="text" name="url" placeholder="Enter URL..." required
-        class="flex-grow px-4 py-2 border rounded-md outline-none dark:bg-gray-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-400" />
-      <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md transition">Generate</button>
-    </form>
-  </section>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 text-center">
+      <p>&copy; 2025 QR Code Generator. All rights reserved.</p>
+    </footer>
 
-  <!-- About Section -->
-  <section id="about" class="py-20 text-center bg-gray-100 dark:bg-gray-800">
-    <h2 class="text-3xl font-semibold mb-6">About Us</h2>
-    <p class="max-w-2xl mx-auto mb-10 text-gray-700 dark:text-gray-300">
-      We help you quickly create QR codes for your links. No sign-up required. It’s private, secure, and optimized for all devices.
-    </p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-md transition">
-        <h3 class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-2">⚡ Fast & Free</h3>
-        <p>Generate QR codes instantly at no cost.</p>
-      </div>
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-md transition">
-        <h3 class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-2">🎨 Customizable</h3>
-        <p>Style and size your QR codes for every need.</p>
-      </div>
-      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-md transition">
-        <h3 class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-2">🔒 Secure</h3>
-        <p>Your URLs are never saved. 100% privacy.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Script -->
+    <script>
+      const themeToggle = document.getElementById("themeToggle");
+      const toggleCircle = document.getElementById("toggleCircle");
+      const toggleIcon = document.getElementById("toggleIcon");
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 text-center bg-white dark:bg-gray-900">
-    <h2 class="text-3xl font-semibold mb-6">Contact Us</h2>
-    <p class="mb-2">📧 <a href="yadavharsh9575@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">yadavharsh9575@gmail.com</a></p>
-    <p class="mb-2">📞 7389886205</p>
-    <p>🌐 Follow us on social media for updates</p>
-  </section>
+      if (
+        localStorage.theme === "dark" ||
+        (!localStorage.theme &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        toggleCircle.classList.add("translate-x-7");
+        toggleIcon.classList.replace("fa-sun", "fa-moon");
+        toggleIcon.classList.replace("text-yellow-400", "text-white");
+      }
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-6 text-center">
-    <p>&copy; 2025 QR Code Generator. All rights reserved.</p>
-  </footer>
-
-  <!-- Script -->
-  <script>
-    const themeToggle = document.getElementById("themeToggle");
-    const toggleCircle = document.getElementById("toggleCircle");
-    const toggleIcon = document.getElementById("toggleIcon");
-
-    if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-      toggleCircle.classList.add('translate-x-7');
-      toggleIcon.classList.replace('fa-sun', 'fa-moon');
-      toggleIcon.classList.replace('text-yellow-400', 'text-white');
-    }
-
-    themeToggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-      const isDark = document.documentElement.classList.contains("dark");
-      localStorage.theme = isDark ? "dark" : "light";
-      toggleCircle.classList.toggle("translate-x-7");
-      toggleIcon.classList.toggle("fa-sun");
-      toggleIcon.classList.toggle("fa-moon");
-      toggleIcon.classList.toggle("text-yellow-400");
-      toggleIcon.classList.toggle("text-white");
-    });
-  </script>
-</body>
+      themeToggle.addEventListener("click", () => {
+        document.documentElement.classList.toggle("dark");
+        const isDark = document.documentElement.classList.contains("dark");
+        localStorage.theme = isDark ? "dark" : "light";
+        toggleCircle.classList.toggle("translate-x-7");
+        toggleIcon.classList.toggle("fa-sun");
+        toggleIcon.classList.toggle("fa-moon");
+        toggleIcon.classList.toggle("text-yellow-400");
+        toggleIcon.classList.toggle("text-white");
+      });
+    </script>
+  </body>
 </html>
